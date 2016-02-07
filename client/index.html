@@ -14,6 +14,37 @@
   <h1>Contact List</h1>
 
   <div id="container" ng-controller="ContactsController">
+     <div id="contact-list">
+      <div ng-repeat="contact in contacts | orderBy: 'name.last' track by $index ">
+        <button class="contact-button"
+          class="contact-summary"
+          ng-click="showContact(contact)">
+          {{contact.name.last}}, {{contact.name.first}}
+        </button>
+      </div>
+     </div>
+
+     <div id="contact-card">
+       <div ng-if="currentContact">
+         <div class="card-header">
+          <img ng-src="{{currentContact.avatar}}" alt="{{currentContact.name.first}} {{currentContact.name.last}}"><h2>{{currentContact.name.first}} {{currentContact.name.last}}</h2>
+          </div>
+        <div>
+          <div id="card-detail">
+             <div id="address-phone">
+               <p>email: {{currentContact.email}}</p>
+               <p>address: {{currentContact.address.streetAddress}}
+               {{currentContact.address.city}}
+               {{currentContact.address.state}} {{currentContact.address.zipCode}}</p>
+               <p>phone:{{currentContact.phone}}</p>
+             </div>
+             <div id="bio">
+               {{currentContact.bio}}
+             </div>
+          </div>
+        </div>
+       </div>
+     </div>
 
   </div>
 

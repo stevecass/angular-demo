@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+div#container {
+  display: flex;
+}
+div#container > div {
+  margin: 10px;
+}
+
+.contact-button {
+  width:200px;
+}
