@@ -1,1 +1,1 @@
-angular.module('contacts', []);
+angular.module('contacts', ['ngResource']);
