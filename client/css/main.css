@@ -8,6 +8,10 @@ div#container > div {
   margin: 10px;
 }
 
+div#contact-card {
+  margin: 0 10px;
+}
+
 .contact-button {
   width:200px;
 }
