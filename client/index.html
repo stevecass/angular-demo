@@ -14,6 +14,7 @@
   <script type="text/javascript" src="js/app-controller.js"></script>
   <script type="text/javascript" src="js/contact-list-component.js"></script>
   <script type="text/javascript" src="js/contact-card-component.js"></script>
+  <script type="text/javascript" src="js/contact-form-component.js"></script>
   <script type="text/javascript" src="js/contacts-controller.js"></script>
 </head>
 <body>
@@ -32,15 +33,22 @@
   </div>
 
   <h1>Contact List</h1>
+  <div ng-controller="ContactsController">
+  <div>
+      <a  href="#" ng-click="showForm()">Add a contact</a>
+  </div>
 
-  <div id="container" ng-controller="ContactsController">
+  <div id="container">
+
      <contact-list contacts="contacts" select="showContact" nameFilter="nameFilter"></contact-list>
 
      <contact-card ng-if="currentContact" contact="currentContact"></contact-card>
 
+     <contact-form ng-show="formVisible" ng-model="newContact" save="saveNewContact"></contact-form>
+
   </div>
 
 </div>
-
+</div>
 </body>
 </html>

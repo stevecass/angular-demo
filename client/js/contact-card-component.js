@@ -27,5 +27,5 @@ angular.module('contacts').directive('contactCard', function() {
 '    </div> ' +
 '   </div> ' +
 ' </div> '
-  };
-});
+    };
+  });
