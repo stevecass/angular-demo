@@ -6,13 +6,13 @@ angular.module('contacts').controller('AppController', ['AuthService', 'Session'
 
   AuthService.getCurrentUser()
     .then(function(response) {
-    }.bind(this));
+    });
 
   $scope.logout = function () {
     AuthService.logout()
     .then(function(){
       $scope.currentUser = Session.userData;
-    }.bind(this));
+    });
   };
 
   $scope.loginForm = {};
@@ -27,6 +27,6 @@ angular.module('contacts').controller('AppController', ['AuthService', 'Session'
       if (Session.userData) {
         $scope.loginForm = {};
       }
-    }.bind(this));
+    });
   };
 }]);
