@@ -1,10 +1,10 @@
 var express = require('express');
+var cors = require('cors')
 var faker = require("faker");
 var jsonServer = require('json-server');
 var cookieParser = require('cookie-parser');
 var session = require('cookie-session');
 var app = express();
-
 function generatePerson(id) {
   return {
     id: id,
@@ -35,6 +35,7 @@ function generateFakeData() {
   return {people: people};
 }
 
+app.use(cors());
 app.use(cookieParser());
 app.use(session(
   {name:'session',
@@ -51,10 +52,13 @@ app.get('/whoami', function(req, res) {
   }
 });
 
+app.post('/logout', function(req, res) {
+    delete(req.session.user);
+    res.json({status: "Not logged in"});
+});
 
 app.post('/login', function(req, res) {
-  console.log(req.session);
-    var user = {name: "John Doe", status:"OK", access_token:"some-fancy-token"};
+    var user = {id: 22, name: "John Doe", status:"OK", access_token:"some-fancy-token"};
     req.session.user = user;
     res.json(user);
 });
@@ -65,4 +69,4 @@ jServer.use(jsonServer.defaults());
 var router = jsonServer.router(people);
 jServer.use(router);
 app.use(jServer);
-app.listen(3000);
+app.listen(3030);
