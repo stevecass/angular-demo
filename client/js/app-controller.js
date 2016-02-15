@@ -1,18 +1,13 @@
-angular.module('contacts').controller('AppController', ['AuthService', 'Session', '$scope', function(AuthService, Session, $scope) {
+angular.module('contacts').controller('AppController', ['AuthService', '$scope', function(AuthService, $scope) {
 
   $scope.$on('userUpdated', function(event, data) {
     $scope.currentUser = data;
   });
 
-  AuthService.getCurrentUser()
-    .then(function(response) {
-    });
+  AuthService.getCurrentUser();
 
   $scope.logout = function () {
-    AuthService.logout()
-    .then(function() {
-      $scope.currentUser = Session.userData;
-    });
+    AuthService.logout();
   };
 
   $scope.loginForm = {};
@@ -24,9 +19,7 @@ angular.module('contacts').controller('AppController', ['AuthService', 'Session'
     };
     AuthService.login(credentials)
     .then(function() {
-      if (Session.userData) {
-        $scope.loginForm = {};
-      }
+      $scope.loginForm = {};
     });
   };
 }]);
