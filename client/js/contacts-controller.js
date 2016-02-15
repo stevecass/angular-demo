@@ -6,6 +6,6 @@ angular.module('contacts').controller('ContactsController', ['Person', '$scope',
 
   $scope.showContact = function(contact) {
     $scope.currentContact = contact;
-  }
+  };
 
 }]);

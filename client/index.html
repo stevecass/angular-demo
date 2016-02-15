@@ -7,12 +7,27 @@
   <script type="text/javascript" src="js/angular.js"></script>
   <script type="text/javascript" src="js/angular-resource.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/session-service.js"></script>
+  <script type="text/javascript" src="js/auth-service.js"></script>
   <script type="text/javascript" src="js/person-factory.js"></script>
-  <script type="text/javascript" src="js/controller.js"></script>
+  <script type="text/javascript" src="js/app-controller.js"></script>
+  <script type="text/javascript" src="js/contacts-controller.js"></script>
 </head>
 <body>
 
-<div ng-app="contacts">
+<div ng-app="contacts" ng-controller="AppController">
+
+  <div>
+    <div ng-if="currentUser">
+      Welcome {{currentUser.name}}
+    </div>
+    <div ng-if="!currentUser">
+      <input type="textr" placeholder="username" ng-model="loginForm.username">
+      <input type="password" placeholder="password" ng-model="loginForm.password">
+      <button ng-click="logUserIn()">Log in</button>
+    </div>
+  </div>
+
   <h1>Contact List</h1>
 
   <div id="container" ng-controller="ContactsController">
