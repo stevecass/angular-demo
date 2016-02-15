@@ -4,51 +4,51 @@
   <title>My Contact List</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
-  <script type="text/javascript" src="js/angular.js"></script>
-  <script type="text/javascript" src="js/canned-data.js"></script>
+  <script type="text/javascript" src="vendor/angular.js"></script>
+  <script type="text/javascript" src="vendor/angular-resource.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/session-service.js"></script>
+  <script type="text/javascript" src="js/auth-service.js"></script>
+  <script type="text/javascript" src="js/person-factory.js"></script>
+  <script type="text/javascript" src="js/filter.js"></script>
+  <script type="text/javascript" src="js/app-controller.js"></script>
+  <script type="text/javascript" src="js/contact-list-component.js"></script>
+  <script type="text/javascript" src="js/contact-card-component.js"></script>
+  <script type="text/javascript" src="js/contact-form-component.js"></script>
+  <script type="text/javascript" src="js/contacts-controller.js"></script>
 </head>
 <body>
 
-<div ng-app="contacts">
+<div ng-app="contacts" ng-controller="AppController">
+
+  <div>
+    <div ng-if="currentUser">
+      Welcome {{currentUser.name}}
+    </div>
+    <div ng-if="!currentUser">
+      <input type="text" placeholder="username" ng-model="loginForm.username">
+      <input type="password" placeholder="password" ng-model="loginForm.password">
+      <button ng-click="logUserIn()">Log in</button>
+    </div>
+  </div>
+
   <h1>Contact List</h1>
+  <div ng-controller="ContactsController">
+  <div>
+      <a  href="#" ng-click="showForm()">Add a contact</a>
+  </div>
 
-  <div id="container" ng-controller="ContactsController">
-     <div id="contact-list">
-      <div ng-repeat="contact in contacts | orderBy: 'name.last' track by $index ">
-        <button class="contact-button"
-          class="contact-summary"
-          ng-click="showContact(contact)">
-          {{contact.name.last}}, {{contact.name.first}}
-        </button>
-      </div>
-     </div>
+  <div id="container">
 
-     <div id="contact-card">
-       <div ng-if="currentContact">
-         <div class="card-header">
-          <img ng-src="{{currentContact.avatar}}" alt="{{currentContact.name.first}} {{currentContact.name.last}}"><h2>{{currentContact.name.first}} {{currentContact.name.last}}</h2>
-          </div>
-        <div>
-          <div id="card-detail">
-             <div id="address-phone">
-               <p>email: {{currentContact.email}}</p>
-               <p>address: {{currentContact.address.streetAddress}}
-               {{currentContact.address.city}}
-               {{currentContact.address.state}} {{currentContact.address.zipCode}}</p>
-               <p>phone:{{currentContact.phone}}</p>
-             </div>
-             <div id="bio">
-               {{currentContact.bio}}
-             </div>
-          </div>
-        </div>
-       </div>
-     </div>
+     <contact-list contacts="contacts" select="showContact" nameFilter="nameFilter"></contact-list>
+
+     <contact-card ng-if="currentContact" contact="currentContact"></contact-card>
+
+     <contact-form ng-show="formVisible" ng-model="newContact" save="saveNewContact"></contact-form>
 
   </div>
 
 </div>
-
+</div>
 </body>
 </html>
