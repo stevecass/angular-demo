@@ -10,6 +10,7 @@
   <script type="text/javascript" src="js/session-service.js"></script>
   <script type="text/javascript" src="js/auth-service.js"></script>
   <script type="text/javascript" src="js/person-factory.js"></script>
+  <script type="text/javascript" src="js/filter.js"></script>
   <script type="text/javascript" src="js/app-controller.js"></script>
   <script type="text/javascript" src="js/contact-list-component.js"></script>
   <script type="text/javascript" src="js/contact-card-component.js"></script>
@@ -33,8 +34,7 @@
   <h1>Contact List</h1>
 
   <div id="container" ng-controller="ContactsController">
-
-     <contact-list contacts="contacts" select="showContact" ></contact-list>
+     <contact-list contacts="contacts" select="showContact" nameFilter="nameFilter"></contact-list>
 
      <contact-card ng-if="currentContact" contact="currentContact"></contact-card>
 

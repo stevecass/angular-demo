@@ -12,6 +12,6 @@ div#contact-card {
   margin: 0 10px;
 }
 
-.contact-button {
+.contact-button, .contact-filter {
   width:200px;
 }
