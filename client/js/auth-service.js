@@ -14,7 +14,7 @@ angular.module('contacts').factory('AuthService', function(Session, $http) {
     return $http.post(baseURI + '/login', credentials)
       .then(function(response){
         console.log(response);
-        if (response.data.id > 0 && response.data.status === "OK") {
+        if (response.data.status === "OK") {
           console.log('creating local session');
           Session.create(response.data);
         }
@@ -28,7 +28,7 @@ angular.module('contacts').factory('AuthService', function(Session, $http) {
     return $http.get(baseURI + '/whoami')
     .then(function(response){
       console.log(response)
-      if (response.data.id > 0) {
+      if (response.data.status === "OK") {
         Session.create(response.data);
       } else {
         Session.destroy();
