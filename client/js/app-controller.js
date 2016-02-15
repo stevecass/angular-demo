@@ -10,7 +10,7 @@ angular.module('contacts').controller('AppController', ['AuthService', 'Session'
 
   $scope.logout = function () {
     AuthService.logout()
-    .then(function(){
+    .then(function() {
       $scope.currentUser = Session.userData;
     });
   };
@@ -23,7 +23,7 @@ angular.module('contacts').controller('AppController', ['AuthService', 'Session'
       password: $scope.loginForm.password
     };
     AuthService.login(credentials)
-    .then(function(){
+    .then(function() {
       if (Session.userData) {
         $scope.loginForm = {};
       }

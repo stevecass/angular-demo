@@ -4,7 +4,7 @@ angular.module('contacts').factory('AuthService', function(Session, $http) {
 
   authService.logout = function() {
     return $http.post(baseURI + '/logout')
-    .then(function(response){
+    .then(function(response) {
       Session.destroy();
     });
   };
@@ -12,21 +12,21 @@ angular.module('contacts').factory('AuthService', function(Session, $http) {
   authService.login = function(credentials) {
     console.log('Logging in', credentials);
     return $http.post(baseURI + '/login', credentials)
-      .then(function(response){
+      .then(function(response) {
         console.log(response);
         if (response.data.status === "OK") {
           console.log('creating local session');
           Session.create(response.data);
         }
       })
-      .catch(function(response){
+      .catch(function(response) {
         console.log('caught', response);
       });
   };
 
   authService.getCurrentUser = function() {
     return $http.get(baseURI + '/whoami')
-    .then(function(response){
+    .then(function(response) {
       console.log(response)
       if (response.data.status === "OK") {
         Session.create(response.data);
@@ -34,7 +34,7 @@ angular.module('contacts').factory('AuthService', function(Session, $http) {
         Session.destroy();
       }
     }.bind(this))
-    .catch(function(response){
+    .catch(function(response) {
       console.log('caught', response);
     });
     ;

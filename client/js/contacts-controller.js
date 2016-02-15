@@ -1,6 +1,6 @@
 angular.module('contacts').controller('ContactsController', ['Person', '$scope', function(Person, $scope) {
 
-  Person.all().then(function(response){
+  Person.all().then(function(response) {
     $scope.contacts = response;
   });
 
